@@ -1,4 +1,4 @@
-exports.Prefix = `/`;//your prefix for bot
+exports.Prefix = `R75!`;//your prefix for bot
 exports.Token = `ODUxODQ1OTc4MTk3NDU5MDE0.YL-NYw.EOC8VdwXuw4UJQtjJT1JJI6V_zs`;//your token 
 exports.Color = `FFCCBC`;//color   of embed
 exports.Ytapi = `AIzaSyAM1JpfbD4o_C4HOhCfSHQMRrA3sMvjorE`;

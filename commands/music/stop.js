@@ -16,4 +16,5 @@ module.exports = {
     message.react('✅')
     queue.songs = []
     queue.connection.dispatcher.end('Đã dừng!')
+    message.guild.me.voice.channel.leave()
 }}

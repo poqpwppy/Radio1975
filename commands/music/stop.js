@@ -1,6 +1,6 @@
 module.exports = {
   name: "stop",
-  aliases: [""],
+  aliases: ["dis"],
 
   run: async(client, message) => {
     const channel = message.member.voice.channel;

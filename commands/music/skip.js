@@ -7,7 +7,7 @@ module.exports = {
     let queue = message.client.queue.get(message.guild.id)
     if(!queue){ return message.channel.send({
         embed: {
-            description: 'Không có gì đang phát! hãy dùng `Fplay <URL hoặc tên bài>`',
+            description: 'Không có gì đang phát! hãy dùng `play <URL hoặc tên bài>`',
             color: 'BLACK'
         }
     })

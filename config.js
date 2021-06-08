@@ -7,6 +7,6 @@ exports.Staytime = 60;
 exports.Volume = 100;
 exports.Pruning = false;
 exports.Locale = `en`;
-exports.Mongo = `mongodb+srv://quak:09102006@cluster0.nff2w.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+exports.Mongo = `mongodb+srv://quak:09102006@cluster0.nff2w.mongodb.net/quak?retryWrites=true&w=majority`;
 exports.admins = ["479255769188007938"];
 exports.countChannel = "851840956537765938";

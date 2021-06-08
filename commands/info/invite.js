@@ -18,8 +18,8 @@ module.exports = {
     
     let invite = new MessageEmbed()
     .setTitle(`Invite-Lời Mời ${client.user.username}`)
-    .setDescription(`Hãy Mời Tôi Hôm Nay-Invite me today! \n\n [Press This Link - Liên Kết](https://discord.com/api/oauth2/authorize?client_id=816144138687873051&permissions=8&scope=bot)`)
-    .setURL(`https://discord.com/api/oauth2/authorize?client_id=816144138687873051&permissions=8&scope=bot`)
+    .setDescription(`Hãy Mời Tôi Hôm Nay-Invite me today! \n\n [Press This Link - Liên Kết](https://discord.com/oauth2/authorize?client_id=851845978197459014&permissions=8&scope=bot)`)
+    .setURL(`https://discord.com/oauth2/authorize?client_id=851845978197459014&permissions=8&scope=bot`)
     .setColor("#fffdd0")
     .setFooter("Invite-Mời!!","https://github.com/navaneethkm004/my-images/blob/main/giphy.gif?raw=true")
     return message.channel.send(invite);

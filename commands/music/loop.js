@@ -6,6 +6,7 @@ module.exports = {
   aliases: [""],
   description: "Loop Your Queue and have fun",
   run: async (client, message, args) => {
+    if (!message.author.hasPermission("ADMINISTRATOR")) return message.channel.send('Bạn không có quyền')
     let embed = new MessageEmbed()
     .setColor(COLOR);
 

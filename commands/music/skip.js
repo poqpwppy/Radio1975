@@ -2,6 +2,7 @@ module.exports = {
   name: "skip",
   aliases: ["s"],
   run: async(client, message) => {
+    if (!message.author.hasPermission("ADMINISTRATOR")) return message.channel.send('Bạn không có quyền')
     const channel = message.member.voice.channel;
     if (!channel) return message.channel.send('Bạn phải tham gia kênh âm thoại!');
     let queue = message.client.queue.get(message.guild.id)

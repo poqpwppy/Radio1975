@@ -1,14 +1,3 @@
-const http = require('http');
-const express = require('express');
-const app = express();
-app.get("/", (request, response) => {
-  console.log(Date.now() + " Ping Received");
-  response.sendStatus(200);
-});
-app.listen(process.env.PORT);
-setInterval(() => {
-  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-}, 280000);
 //Bot
 const keepAlive = require('./server1.js');
 const Eco = require("quick.eco");
@@ -38,7 +27,7 @@ const translate = require('@iamtraction/google-translate');
 const { Prefix, Token, Color, Locale } = require("./config.js");
 const { Database } = require('quickmongo');
 const Afk = require('./database/models/afkSchema.js');
-const mongoDBURL = 'mongodb://conghal:Thuongvu1@flexinbot-shard-00-00.cesni.mongodb.net:27017,flexinbot-shard-00-01.cesni.mongodb.net:27017,flexinbot-shard-00-02.cesni.mongodb.net:27017/Flexinbot?replicaSet=atlas-fat2xt-shard-0&ssl=true&authSource=admin';
+const mongoDBURL = 'mongodb+srv://quak:09102006@cluster0.nff2w.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 mongoose.connect(mongoDBURL, {
   useUnifiedTopology: true,
   useNewUrlParser: true

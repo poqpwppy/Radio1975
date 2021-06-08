@@ -159,7 +159,7 @@ client.on("message", async message => {
 });
 
 
-let modules = ["fun", "info", "moderation", "music", "giveaway", "main", "nsfw", "economy", "reactionrole", "soundboard"];
+let modules = ["info", "moderation", "music", "main"];
 
 modules.forEach(function(module) {
   fs.readdir(`./commands/${module}`, function(err, files) {
@@ -233,50 +233,6 @@ client.on("message", async (message, guild) => {
     `User : ${message.author.tag} (${message.author.id}) Server : ${message.guild.name} (${message.guild.id}) Command : ${command.name}`
   )
 });
-client.on("message", async message => {
-  if (message.channel.type === "dm") return;
-  xp(message)
-  if(message.content.startsWith(`${PREFIX}rank`)) {
-  if(message.author.bot) return;
-  var user = message.mentions.users.first() || message.author;
-  var level = db.fetch(`guild_${message.guild.id}_level_${user.id}`) || 0;
-  var currentxp = db.fetch(`guild_${message.guild.id}_xp_${user.id}`) || 0;
-  var xpNeeded = level * 500 + 500
-  const rankcard = new Canvacord.Rank()
-    .setAvatar(user.displayAvatarURL({ format: 'png', dynamic: true }))
-    .setCurrentXP(db.fetch(`guild_${message.guild.id}_xp_${user.id}`) || 0)
-    .setRequiredXP(xpNeeded)
-    .setStatus(user.presence.status)
-    .setLevel(db.fetch(`guild_${message.guild.id}_level_${user.id}`) || 0)
-    .setRank(1, 'XẾP HẠNG', false)
-    .setProgressBar("#a81d16", "COLOR")
-    .setOverlay("#000000")
-    .setUsername(user.username)
-    .setDiscriminator(user.discriminator)
-    .setBackground("IMAGE", "https://media.discordapp.net/attachments/842338829381271552/842704656479420426/pngtree-blue-sky-white-clouds-banner-background-image_268124.png")
-    rankcard.build()
-    .then(data => {
-      const atta = new Discord.MessageAttachment(data, "rank.png")
-      message.channel.send(atta)
-    })
-  }
-  function xp(message) {
-    if(message.author.bot) return;
-    const randomNumber = Math.floor(Math.random() * 100) + 200;
-    db.add(`guild_${message.guild.id}_xp_${message.author.id}`, randomNumber)
-    db.add(`guild_${message.guild.id}_xptotal_${message.author.id}`, randomNumber)
-    var level = db.get(`guild_${message.guild.id}_level_${message.author.id}`) || 1
-    var xp = db.get(`guild_${message.guild.id}_xp_${message.author.id}`)
-    var xpNeeded = level * 500;
-    if(xpNeeded< xp) {
-      var newLevel = db.add(`guild_${message.guild.id}_level_${message.author.id}`, 1)
-      db.subtract(`guild_${message.guild.id}_xp_${message.author.id}`, xpNeeded)
-      message.channel.send(`Chúc mừng ${message.author.username}, em đã lên level ${newLevel}`)
-    }
-  }
-
-});
-
 keepAlive();
 
 client.login(Token);

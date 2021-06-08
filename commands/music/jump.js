@@ -7,7 +7,7 @@ module.exports = {
   description: "Nhày tới bạn muốn",
   run: async (client, message, args) => {
     
-     if (!message.guild.author.hasPermission("ADMINISTRATOR")) return message.channel.send('Bạn không có quyền')    
+     if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Bạn không có quyền')    
      let embed = new MessageEmbed()
 .setColor(COLOR);
 

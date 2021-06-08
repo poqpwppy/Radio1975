@@ -3,7 +3,7 @@ module.exports = {
   aliases: [""],
 
   run: async(client, message) => {
-    if (!message.guild.author.hasPermission("ADMINISTRATOR")) return message.channel.send('Bạn không có quyền')
+    if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Bạn không có quyền')
     const channel = message.member.voice.channel;
     if (!channel) return message.channel.send('Bạn phải ở trong kênh thoại');
     let queue = message.client.queue.get(message.guild.id)

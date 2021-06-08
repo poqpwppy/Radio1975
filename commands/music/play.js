@@ -7,7 +7,7 @@ module.exports = {
   aliases: ["p"],
 
   run: async (client, message, args) => {
-    if (!message.guild.author.hasPermission("ADMINISTRATOR")) return message.channel.send('Bạn không có quyền')
+    if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Bạn không có quyền')
     if(!args[0]) return message.channel.send('Bạn chưa  cung cấp bài để phát!')
     let channel = message.member.voice.channel;
     if(!channel) return message.channel.send('Bạn phải ở trong kênh thoại!')

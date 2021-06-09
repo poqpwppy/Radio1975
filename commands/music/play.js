@@ -5,14 +5,12 @@ const youtube = new YouTube(YOUTUBE_API_KEY);
 const ytdl = require('ytdl-core');
 
 module.exports = {
-    config: {
-        name: 'play',
-        description: 'Chơi nhạc',
-        aliases: ["p"],
-        category: "music",
-        usage: '[song (name | link)]',
-        accessableby: "everyone"
-    },
+    name: 'play',
+    description: 'Chơi nhạc',
+    aliases: ["p"],
+    category: "music",
+    usage: '[song (name | link)]',
+    accessableby: "everyone"
     run: async (bot, message, args, ops) => {
         if (!args[0]) return message.channel.send("**Please Enter Song Name Or Link!**")
         args = message.content.split(' ');

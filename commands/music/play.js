@@ -14,6 +14,8 @@ module.exports = {
 
     if (!channel.permissionsFor(message.client.user).has("CONNECT")) return message.channel.send('Tôi không có quyền để tham gia kênh âm thoại')
     if (!channel.permissionsFor(message.client.user).has("SPEAK"))return message.channel.send('Tôi không có quyền để nói trong kênh')
+    let bot = message.guild.me.voice.channel
+    if (!bot) return channel.join()
 
 
     const server = message.client.queue.get(message.guild.id);

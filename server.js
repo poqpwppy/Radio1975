@@ -26,7 +26,6 @@ const Canvacord = require('canvacord');
 const translate = require('@iamtraction/google-translate');
 const { Prefix, Token, Color, Locale } = require("./config.js");
 const { Database } = require('quickmongo');
-const Afk = require('./database/models/afkSchema.js');
 const mongoDBURL = 'mongodb+srv://quak:09102006@cluster0.nff2w.mongodb.net/quak?retryWrites=true&w=majority';
 mongoose.connect(mongoDBURL, {
   useUnifiedTopology: true,

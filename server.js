@@ -188,23 +188,7 @@ client.on("message", async (message, guild) => {
 
 
   if (!message.guild) return;
-  if (await Afk.findOne({ userID: message.author.id })) {
-    let afkProfile = await Afk.findOne({ userID: message.author.id });
-    if (afkProfile.messagesLeft == 0) {
-      await Afk.findOneAndDelete({ userID: message.author.id });
-      message.channel.send('Đã thoát khỏi AFK mode');
-    } else {
-      await Afk.findOneAndUpdate({ userID: message.author.id }, { messagesLeft: afkProfile.messagesLeft - 1 });
-    }
-  }
-
-  if (message.mentions.members.first()) {
-    await message.mentions.members.forEach(async member => {
-      let afkProfile = await Afk.findOne({ userID: member.user.id });
-      if (afkProfile) message.channel.send(`${member.user.tag} đang trong AFK với lí do: ${afkProfile.reason}`);
-    })
-  }
-
+  
   if (message.author.bot) return;
   if (!message.content.startsWith(Prefix)) return;
 

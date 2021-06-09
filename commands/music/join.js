@@ -8,7 +8,8 @@ module.exports = {
 
   run: async (client, message, args) => {
 
-    let bot = message.me.voice.channel;
+    if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Bạn không có quyền')
+    let bot = message.guild.me.voice.channel;
     if(bot) return message.channel.send('Tôi đang được sử dụng rồi!');
     let channel = message.member.voice.channel;
     if(!channel) return message.channel.send('Bạn phải ở trong kênh thoại!')

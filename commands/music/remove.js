@@ -1,12 +1,10 @@
 module.exports = {
-    config: {
         name: "remove",
         aliases: ["rs"],
         category: "music",
         description: "Bỏ một bài nhạc trong hàng chờ!",
         usage: "[song number]",
         acessableby: "everyone"
-    },
     run: async (bot, message, args, ops) => {
         if (!args[0]) return message.channel.send("**Nhập id bài nhạc bạn muốn bỏ!**")
 

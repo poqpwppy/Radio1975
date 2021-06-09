@@ -1,6 +1,7 @@
 const { ownerID } = require('../../config.json');
 module.exports = {
   name: "bug",
+  aliases: [""],
 category: "info",
 run : async(client, message, args) => { 
 // again make this fit your command handler style 😀

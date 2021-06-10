@@ -67,13 +67,15 @@ module.exports = {
     const play = async song => {
         const queue = message.client.queue.get(message.guild.id);
         if (!song) {
+            await sleep(60000);
             queue.voiceChannel.leave();
             message.client.queue.delete(message.guild.id);
             message.channel.send('Không có gì để phát, tôi thoát đây!')
             return;
         }
 
-        const dispatcher = queue.connection.play(await ytdl(`https://youtube.com/watch?v=${song.id}`, {
+        const dispatcher = queue.connection
+            .play(await ytdl(`https://youtube.com/watch?v=${song.id}`, {
             filter: format => ['251'],
             highWaterMark: 1 << 25
         }), {
@@ -93,7 +95,7 @@ module.exports = {
         .addField('Số người xem', song.views, true)
         .addField('Thời hạn', timeString, true)
         queue.textChannel.send(noiceEmbed);
-    };
+        };
     
     try {
         const connection = await channel.join();

@@ -1,6 +1,7 @@
 module.exports = {
   name: "pause",
   aliases: [""],
+  category:"music",
 
   run: async(client, message) => {
     if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Bạn không có quyền')

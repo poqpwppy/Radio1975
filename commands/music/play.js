@@ -15,12 +15,12 @@ module.exports = {
 
     if (!channel.permissionsFor(message.client.user).has("CONNECT")) return message.channel.send('Tôi không có quyền để tham gia kênh âm thoại')
     if (!channel.permissionsFor(message.client.user).has("SPEAK"))return message.channel.send('Tôi không có quyền để nói trong kênh')
+    
+    let bot = message.guild.me.voice.channel
 
     const server = message.client.queue.get(message.guild.id);
     let video = await scrapeYt.search(args.join(' '))
     let result = video[0]
-
-    let bot = message.guild.me.voice.channel
     
     const song = {
         id: result.id,
@@ -38,7 +38,7 @@ module.exports = {
     date.setSeconds(song.duration); // specify value for SECONDS here
     var timeString = date.toISOString().substr(11, 8);
 
-      if (bot && server) {
+      if (server && bot) {
         server.songs.push(song);
         console.log(server.songs);
         let embed = new discord.MessageEmbed()
@@ -51,9 +51,9 @@ module.exports = {
         .addField('Thời gian', timeString, true)
         return message.channel.send(embed)
     }
-    if (!bot) {
+    if (!server || (server && !bot)) {
      message.client.queue.delete(message.guild.id);
-     
+      
      const queueConstruct = {
         textChannel: message.channel,
         voiceChannel: channel,
@@ -70,7 +70,7 @@ module.exports = {
     const play = async song => {
         const queue = message.client.queue.get(message.guild.id);
         if (!song) {
-            ({ timeout: 60000 });
+            await sleep(60000);
             queue.voiceChannel.leave();
             message.client.queue.delete(message.guild.id);
             message.channel.send('Không có gì để phát, tôi thoát đây!')

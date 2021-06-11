@@ -16,7 +16,6 @@ module.exports = {
     if (!channel.permissionsFor(message.client.user).has("SPEAK"))return message.channel.send('Tôi không có quyền để nói trong kênh')
     
     let bot = message.guild.me.voice.channel
-    if (!bot) return channel.join()
 
     const server = message.client.queue.get(message.guild.id);
     let video = await scrapeYt.search(args.join(' '))
@@ -51,17 +50,28 @@ module.exports = {
         .addField('Thời gian', timeString, true)
         return message.channel.send(embed)
     }
-
-    const queueConstruct = {
+    if (!server) {
+     const queueConstruct = {
         textChannel: message.channel,
         voiceChannel: channel,
         connection: null,
         songs: [],
-        volume: 2,
+        volume: 5,
         playing: true
     };
     message.client.queue.set(message.guild.id, queueConstruct);
     queueConstruct.songs.push(song);
+    try {
+        const connection = await channel.join();
+        queueConstruct.connection = connection;
+        play(queueConstruct.songs[0]);
+    } catch (error) {
+        console.error(`I could not join the voice channel`);
+        message.client.queue.delete(message.guild.id);
+        await channel.leave();
+        return message.channel.send(`I could not join the voice channel: ${error}`);
+    }
+   }
 
 
     const play = async song => {
@@ -73,7 +83,6 @@ module.exports = {
             message.channel.send('Không có gì để phát, tôi thoát đây!')
             return;
         }
-
         const dispatcher = queue.connection
             .play(await ytdl(`https://youtube.com/watch?v=${song.id}`, {
             filter: format => ['251'],
@@ -96,16 +105,5 @@ module.exports = {
         .addField('Thời hạn', timeString, true)
         queue.textChannel.send(noiceEmbed);
         };
-    
-    try {
-        const connection = await channel.join();
-        queueConstruct.connection = connection;
-        play(queueConstruct.songs[0]);
-    } catch (error) {
-        console.error(`I could not join the voice channel`);
-        message.client.queue.delete(message.guild.id);
-        await channel.leave();
-        return message.channel.send(`I could not join the voice channel: ${error}`);
-    }
   }
 }  

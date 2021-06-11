@@ -21,7 +21,6 @@ module.exports = {
     let result = video[0]
 
     let bot = message.guild.me.voice.channel
-    if (!bot) return message.client.queue.delete(message.guild.id)
     
     const song = {
         id: result.id,
@@ -52,7 +51,9 @@ module.exports = {
         .addField('Thời gian', timeString, true)
         return message.channel.send(embed)
     }
-    if (!bot && !server) {
+    if (!bot) {
+     message.client.queue.delete(message.guild.id);
+     
      const queueConstruct = {
         textChannel: message.channel,
         voiceChannel: channel,

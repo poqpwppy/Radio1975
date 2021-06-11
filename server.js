@@ -216,6 +216,12 @@ client.on("message", async (message, guild) => {
     `User : ${message.author.tag} (${message.author.id}) Server : ${message.guild.name} (${message.guild.id}) Command : ${command.name}`
   )
 });
+
+//Radio 1975
+client.on('guildMemberAdd', newMem => {
+  newMem.setNickname(`R75 - ${newMem.username}`)
+});
+
 keepAlive();
 
 client.login(Token);

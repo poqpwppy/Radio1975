@@ -21,7 +21,7 @@ module.exports = {
     let result = video[0]
 
     let bot = message.guild.me.voice.channel
-    if (!bot) return message.client.server.delete(message.guild.id)
+    if (!bot) return message.client.queue.delete(message.guild.id)
     
     const song = {
         id: result.id,
@@ -109,4 +109,4 @@ module.exports = {
     }
    }
   }
-}
+}  

@@ -5,6 +5,7 @@ const discord = require('discord.js')
 module.exports = {
   name: "play",
   aliases: ["p"],
+  category: "music",
 
   run: async (client, message, args) => {
 
@@ -61,17 +62,7 @@ module.exports = {
     };
     message.client.queue.set(message.guild.id, queueConstruct);
     queueConstruct.songs.push(song);
-    try {
-        const connection = await channel.join();
-        queueConstruct.connection = connection;
-        play(queueConstruct.songs[0]);
-    } catch (error) {
-        console.error(`I could not join the voice channel`);
-        message.client.queue.delete(message.guild.id);
-        await channel.leave();
-        return message.channel.send(`I could not join the voice channel: ${error}`);
-    }
-   }
+    
 
 
     const play = async song => {
@@ -105,5 +96,16 @@ module.exports = {
         .addField('Thời hạn', timeString, true)
         queue.textChannel.send(noiceEmbed);
         };
+        try {
+        const connection = await channel.join();
+        queueConstruct.connection = connection;
+        play(queueConstruct.songs[0]);
+        } catch (error) {
+        console.error(`I could not join the voice channel`);
+        message.client.queue.delete(message.guild.id);
+        await channel.leave();
+        return message.channel.send(`I could not join the voice channel: ${error}`);
+    }
+   }
   }
 }  

@@ -38,7 +38,7 @@ module.exports = {
     date.setSeconds(song.duration); // specify value for SECONDS here
     var timeString = date.toISOString().substr(11, 8);
 
-      if (server && bot) {
+      if (bot && server) {
         server.songs.push(song);
         console.log(server.songs);
         let embed = new discord.MessageEmbed()
@@ -70,7 +70,7 @@ module.exports = {
     const play = async song => {
         const queue = message.client.queue.get(message.guild.id);
         if (!song) {
-            await sleep(60000);
+            ({ timeout: 60000 });
             queue.voiceChannel.leave();
             message.client.queue.delete(message.guild.id);
             message.channel.send('Không có gì để phát, tôi thoát đây!')

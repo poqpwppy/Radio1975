@@ -5,7 +5,7 @@ const discord = require('discord.js')
 module.exports = {
   name: "play",
   aliases: ["p"],
-  category: "music",
+  category:"music",
 
   run: async (client, message, args) => {
 
@@ -51,7 +51,7 @@ module.exports = {
         .addField('Thời gian', timeString, true)
         return message.channel.send(embed)
     }
-    if (!server) {
+    if (!bot) {
      const queueConstruct = {
         textChannel: message.channel,
         voiceChannel: channel,

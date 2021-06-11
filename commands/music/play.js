@@ -38,7 +38,7 @@ module.exports = {
     date.setSeconds(song.duration); // specify value for SECONDS here
     var timeString = date.toISOString().substr(11, 8);
 
-      if (server) {
+      if (server && bot) {
         server.songs.push(song);
         console.log(server.songs);
         let embed = new discord.MessageEmbed()
@@ -51,7 +51,7 @@ module.exports = {
         .addField('Thời gian', timeString, true)
         return message.channel.send(embed)
     }
-    if (!bot) {
+    if (!bot && !server) {
      const queueConstruct = {
         textChannel: message.channel,
         voiceChannel: channel,

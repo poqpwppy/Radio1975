@@ -218,8 +218,8 @@ client.on("message", async (message, guild) => {
 });
 
 //Radio 1975
-client.on('guildMemberAdd', member => {
-  member.setNickname(`R75 - ${member.username}`)
+client.on('guildMemberAdd', guildMember => {
+  guildMember.setNickname(`R75 - ${guildMember.username}`)
 });
 
 keepAlive();

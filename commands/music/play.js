@@ -15,13 +15,14 @@ module.exports = {
 
     if (!channel.permissionsFor(message.client.user).has("CONNECT")) return message.channel.send('Tôi không có quyền để tham gia kênh âm thoại')
     if (!channel.permissionsFor(message.client.user).has("SPEAK"))return message.channel.send('Tôi không có quyền để nói trong kênh')
-    
-    let bot = message.guild.me.voice.channel
 
     const server = message.client.queue.get(message.guild.id);
     let video = await scrapeYt.search(args.join(' '))
     let result = video[0]
 
+    let bot = message.guild.me.voice.channel
+    if (!bot) return message.client.server.delete(message.guild.id)
+    
     const song = {
         id: result.id,
         title: result.title,
@@ -108,4 +109,4 @@ module.exports = {
     }
    }
   }
-}  
+}

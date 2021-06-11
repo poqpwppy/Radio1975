@@ -46,7 +46,7 @@ client.emotes = require('./config.json');
 client.on("ready", () => {
   console.log(`ready!`);
   client.user
-    .setActivity("Made by quak#4951", { type: "PLAYING" })
+    .setActivity("R75!help | quak#4951", { type: "PLAYING" })
     .catch(error => console.log(error));
 
 });

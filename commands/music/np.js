@@ -3,6 +3,7 @@ const { MessageEmbed } = require('discord.js')
 module.exports = {
   name: "nowplaying",
   aliases: ["np"],
+  category: "music",
   run: async(client, message) => {
     const channel = message.member.voice.channel;
     if (!channel) return message.channel.send('Bạn phải tham gia kênh âm thoại!');

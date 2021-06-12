@@ -4,7 +4,7 @@ const config = require("../../config.json");
 module.exports = {
   name: "bt-rst",
   aliases: ["restartbot"],
-  category: "Owner Only",
+  category: "! Just for quak#4951",
   run: async (client, message, args) => {
     
     await client.destroy();

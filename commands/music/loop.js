@@ -4,6 +4,7 @@ const { COLOR } = require("../../config.json");
 module.exports = {
   name: "loop",
   aliases: [""],
+  category: "music",
   description: "Loop Your Queue and have fun",
   run: async (client, message, args) => {
     if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Bạn không có quyền')

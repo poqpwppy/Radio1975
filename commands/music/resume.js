@@ -1,6 +1,7 @@
 module.exports = {
   name: "resume",
   aliases: ["rm"],
+  category: "music",
 
   run: async(client, message) => {
     if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Bạn không có quyền')
@@ -9,7 +10,7 @@ module.exports = {
     let queue = message.client.queue.get(message.guild.id)
     if(!queue) return message.channel.send({
         embed: {
-            description: 'Không có gì đang phát để dừng!'
+            description: 'Không có gì đang dừng để phát!'
         }
     })
     if(queue.playing !== false)

@@ -3,6 +3,7 @@ const lyricsFinder = require("lyrics-finder");
 module.exports = {
     name: "lyrics",
     aliases: ["l"],
+    category: "music",
     run: async(client, message, args) => {
     const queue = message.client.queue.get(message.guild.id);
     if (!queue) return message.channel.send("Không có gì đang phát.").catch(console.error);

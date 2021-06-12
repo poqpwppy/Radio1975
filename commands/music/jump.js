@@ -5,6 +5,7 @@ module.exports = {
   name: "jump",
   aliases: [""],
   description: "Nhày tới bạn muốn",
+  category: "music",
   run: async (client, message, args) => {
     
      if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Bạn không có quyền')    

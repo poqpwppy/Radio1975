@@ -2,7 +2,7 @@ const { ownerID } = require('../../config.json');
 module.exports = {
   name: "bug",
   aliases: [""],
-category: "info",
+category: "Báo lỗi",
 run : async(client, message, args) => { 
 // again make this fit your command handler style 😀
   if (!args[0]) return message.reply("Hãy đưa lỗi!. Ví dụ:\n`/Lệnh gì gì đó không hoạt động, sửa đê`");   

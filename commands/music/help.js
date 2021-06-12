@@ -1,41 +1,58 @@
-const Discord = require("discord.js");
 const { MessageEmbed } = require("discord.js");
-const { Color, Prefix } = require("../../config.js");
 
 module.exports = {
   name: "help",
   aliases: ["h"],
-  description: "Help Command!",
-  usage: "Help | <Tên lệnh>",
-  run: async(client, message, args) => {
-    
-    message.delete();
-    
-    let embed = new MessageEmbed()
-    .setColor(Color)
-    .setTitle(`${client.user.username} CÁC LỆNH!`)
-    .setDescription(`Dùng ${Prefix}Help <Command Name> Để Biết Thêm THông Tin!` + "\n\n"  + "**Âm nhạc**\n`Drop, Jump, loop, Nowplaying, Pause, Queue, Resume, Skip, Stop, Volume`")
-    .setFooter(`Hỏi Bởi ${message.author.username}`)
-    .setTimestamp();
-    
-    if (!args.length) return message.channel.send(embed);
+  description:
+    "Lấy danh sách các lệnh",
+  usage: "help <cmd>",
+  category: "Help",
+  run: async (client, message, args) => {
+    if (args[0]) {
+      const command = await client.commands.get(args[0]);
 
-    let cmd =
-      client.commands.get(args[0].toLowerCase()) ||
-      client.commands.get(client.aliases.get(args[0].toLowerCase()));
+      if (!command) {
+        return message.channel.send("Lệnh không xác định: " + args[0]);
+      }
 
-    let embed2 = new MessageEmbed()
-      .setColor(Color)
-      .setTitle(`Thông tin lệnh ${cmd.name}!`)
-      .addField(`Thay thế:`, cmd.aliases || "Không có!")
-      .addField(`Cách dùng:`, cmd.usage || "Không có cách dùng")
-      .addField(`Thông tin:`, cmd.description || "Không Có Thông Tin!")
-      .setTimestamp();
+      let embed = new MessageEmbed()
+        .setAuthor(command.name, client.user.displayAvatarURL())
+        .addField("Mô tả lệnh", command.description || "Không cung cấp :(")
+        .addField("Cách dùng", "`" + command.usage + "`" || "Không cung cấp :(")
+        .setThumbnail(client.user.displayAvatarURL())
+        .setColor("ffccbc")
+        .setFooter(client.user.username, client.user.displayAvatarURL());
 
-    if (cmd) {
-      return message.channel.send(embed2);
-    } else {
       return message.channel.send(embed);
+    } else {
+      const commands = await client.commands;
+
+      let emx = new MessageEmbed()
+        .setDescription("[Support server](https://discord.gg/BwGcJgc83u) | Bot được làm bởi quak#4951")
+        .setColor("ffccbc")
+        .setFooter(client.user.username, client.user.displayAvatarURL())
+        .setThumbnail(client.user.displayAvatarURL());
+
+      let com = {};
+      for (let comm of commands.array()) {
+        let category = comm.category || "Không xác định";
+        let name = comm.name;
+
+        if (!com[category]) {
+          com[category] = [];
+        }
+        com[category].push(name);
+      }
+
+      for(const [key, value] of Object.entries(com)) {
+        let category = key;
+
+        let desc = "`" + value.join("`, `") + "`";
+
+        emx.addField(`${category.toUpperCase()}[${value.length}]`, desc);
+      }
+
+      return message.channel.send(emx);
     }
   }
 };

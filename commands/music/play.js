@@ -52,7 +52,7 @@ module.exports = {
         return message.channel.send(embed)
     }
 
-     if (!bot) {
+     if (!bot || !server) {
      message.client.queue.delete(message.guild.id);
       
      const queueConstruct = {

@@ -1,39 +1,20 @@
-const { MessageEmbed } = require("discord.js")
-const { COLOR } = require("../../config.json");
-
 module.exports = {
-  name: "loop",
-  aliases: [""],
+  name: "skip",
+  aliases: ["skip"],
   category: "music",
-  description: "Loop Your Queue and have fun",
-  run: async (client, message, args) => {
-    let embed = new MessageEmbed()
-    .setColor(COLOR);
-
-    const { channel } = message.member.voice;
-    if (!channel) {
-      //IF AUTHOR IS NOT IN VOICE CHANNEL
-      embed.setAuthor("Bạn phải ở trong kênh âm thoại :/")
-      return message.channel.send(embed);
+  run: async(client, message) => {
+    const channel = message.member.voice.channel;
+    if (!channel) return message.channel.send('Bạn phải tham gia kênh âm thoại!');
+    let queue = message.client.queue.get(message.guild.id)
+    if(!queue){ return message.channel.send({
+        embed: {
+            description: 'Không có gì đang phát! hãy dùng `q/play <URL hoặc tên bài>`',
+            color: 'BLACK'
+        }
+    })
+}
+    if(queue.songs.length !== 0) {
+        message.react('✅')
+        queue.connection.dispatcher.end('Okie đã skip!')
     }
-
-    const serverQueue = message.client.queue.get(message.guild.id);
-
-    if (!serverQueue) {
-      embed.setAuthor("Không có bài gì để phát vòng lặp")
-      return message.channel.send(embed);
-    }
-    
-    //OOOOF
-    serverQueue.loop = !serverQueue.loop;
-    
-    
-    embed.setDescription(`Lặp lại đã **${serverQueue.loop ? "Bật" : "Tắt"}**`)
-    embed.setThumbnail(client.user.displayAvatarURL())
-    message.channel.send(embed);
-  }
-    
-    
-    
-  
-};
+}}

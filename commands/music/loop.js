@@ -28,8 +28,15 @@ module.exports = {
     //OOOOF
     serverQueue.loop = !serverQueue.loop;
     
+    if (serverQueue.loop === true) {
+     serverQueue.songs.push(serverQueue.songs.shift())
+     embed.setDescription('Lặp lại đã **Bật**')
+    }
+    else {
+     serverQueue.songs.shift()
+     embed.setDescription('Lặp lại đã **Tắt**')
+    };
     
-    embed.setDescription(`Lạp lại đã **${serverQueue.loop ? "Bật" : "Tắt"}**`)
     embed.setThumbnail(client.user.displayAvatarURL())
     message.channel.send(embed);
   }

@@ -51,7 +51,6 @@ module.exports = {
         .addField('Thời gian', timeString, true)
         return message.channel.send(embed)
     }
-    if (!server || !bot) {
       
      const queueConstruct = {
         textChannel: message.channel,
@@ -75,6 +74,7 @@ module.exports = {
             message.channel.send('Không có gì để phát, tôi thoát đây!')
             return;
         }
+        if (!server || !bot) {
         const dispatcher = queue.connection
             .play(await ytdl(`https://youtube.com/watch?v=${song.id}`, {
             filter: format => ['251'],

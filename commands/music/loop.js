@@ -39,6 +39,7 @@ module.exports = {
     
     embed.setThumbnail(client.user.displayAvatarURL())
     message.channel.send(embed);
+    play(serverQueue.songs[0])
   }
     
     

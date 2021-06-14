@@ -51,6 +51,7 @@ module.exports = {
         .addField('Thời gian', timeString, true)
         return message.channel.send(embed)
     }
+    if (!server || (server && !bot)) {
       
      const queueConstruct = {
         textChannel: message.channel,
@@ -107,4 +108,5 @@ module.exports = {
         return message.channel.send(`I could not join the voice channel: ${error}`);
     }
    }
+  }
 }  

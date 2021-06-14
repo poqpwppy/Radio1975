@@ -7,7 +7,6 @@ module.exports = {
   category: "music",
   description: "Loop Your Queue and have fun",
   run: async (client, message, args) => {
-    if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('Bạn không có quyền')
     let embed = new MessageEmbed()
     .setColor(COLOR);
 
@@ -28,18 +27,10 @@ module.exports = {
     //OOOOF
     serverQueue.loop = !serverQueue.loop;
     
-    if (serverQueue.loop === true) {
-     serverQueue.songs.push(serverQueue.songs.shift())
-     embed.setDescription('Lặp lại đã **Bật**')
-    }
-    else {
-     serverQueue.songs.shift()
-     embed.setDescription('Lặp lại đã **Tắt**')
-    };
     
+    embed.setDescription(`Lặp lại đã **${serverQueue.loop ? "Bật" : "Tắt"}**`)
     embed.setThumbnail(client.user.displayAvatarURL())
     message.channel.send(embed);
-    play(serverQueue.songs[0])
   }
     
     

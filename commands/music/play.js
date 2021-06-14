@@ -51,9 +51,7 @@ module.exports = {
         .addField('Thời gian', timeString, true)
         return message.channel.send(embed)
     }
-
-     if (!bot || !server) {
-     message.client.queue.delete(message.guild.id);
+    if (!server || !bot) {
       
      const queueConstruct = {
         textChannel: message.channel,

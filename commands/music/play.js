@@ -52,6 +52,7 @@ module.exports = {
         return message.channel.send(embed)
     }
 
+     if (!bot) {
      message.client.queue.delete(message.guild.id);
       
      const queueConstruct = {
@@ -108,5 +109,6 @@ module.exports = {
         await channel.leave();
         return message.channel.send(`I could not join the voice channel: ${error}`);
     }
+   }
   }
 }  

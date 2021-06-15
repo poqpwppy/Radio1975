@@ -83,7 +83,11 @@ module.exports = {
             type: 'opus'
         })
             .on('finish', () => {
-                queue.songs.shift();
+                if (queue.loop) {
+                  queue.songs.push(queue.songs[0])
+                  queue.songs.shift
+                }
+                else queue.songs.shift();
                 play(queue.songs[0]);
             })
             .on('error', error => console.error(error));

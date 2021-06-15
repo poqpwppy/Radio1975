@@ -83,11 +83,12 @@ module.exports = {
         })
             .on('finish', () => {
                 if (queue.loop) {
-                  queue.songs.push(queue.songs.shift())
-                  play(queue.songs[0])
-                } else {
-                  queue.songs.shift()
-                  play(queue.songs[0])
+                  let lastSong = queue.songs.shift();
+                  queue.songs.push(lastSong);
+                  play(queue.songs[0]);
+                  } else {
+                  queue.songs.shift();
+                  play(queue.songs[0]);
                 }  
             })
             .on('error', error => console.error(error));

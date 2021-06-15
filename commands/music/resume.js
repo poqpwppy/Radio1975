@@ -1,6 +1,6 @@
 module.exports = {
   name: "resume",
-  aliases: ["rm"],
+  aliases: ["rsm"],
   category: "music",
 
   run: async(client, message) => {

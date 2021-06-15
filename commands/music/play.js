@@ -85,11 +85,7 @@ module.exports = {
             type: 'opus'
         })
             .on('finish', () => {
-                if (serverQueue.loop === true) {
-                  queue.songs.push(queue.songs[0])
-                  queue.songs.shift
-                }
-                else queue.songs.shift();
+                queue.songs.shift();
                 play(queue.songs[0]);
             })
             .on('error', error => console.error(error));

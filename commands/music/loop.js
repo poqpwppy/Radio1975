@@ -27,6 +27,10 @@ module.exports = {
     //OOOOF
     serverQueue.loop = !serverQueue.loop;
     
+    if (serverQueue.loop === true) {
+      serverQueue.songs.push(serverQueue.songs[0])
+      serverQueue.songs.shift()
+    }
     
     embed.setDescription(`Lặp lại đã **${serverQueue.loop ? "Bật" : "Tắt"}**`)
     embed.setThumbnail(client.user.displayAvatarURL())

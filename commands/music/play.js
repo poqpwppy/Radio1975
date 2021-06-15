@@ -19,6 +19,7 @@ module.exports = {
     let bot = message.guild.me.voice.channel
 
     const server = message.client.queue.get(message.guild.id);
+    const serverQueue = message.client.queue.get(message.guild.id);
     let video = await scrapeYt.search(args.join(' '))
     let result = video[0]
     
@@ -84,7 +85,7 @@ module.exports = {
             type: 'opus'
         })
             .on('finish', () => {
-                if (server.loop === true) {
+                if (serverQueue.loop === true) {
                   queue.songs.push(queue.songs[0])
                   queue.songs.shift
                 }

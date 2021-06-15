@@ -82,8 +82,13 @@ module.exports = {
             type: 'opus'
         })
             .on('finish', () => {
-                queue.songs.shift();
-                play(queue.songs[0]);
+                if (queue.loop) {
+                  queue.songs.push(queue.songs.shift())
+                  play(queue.songs[0])
+                } else {
+                  queue.songs.shift();
+                  play(queue.songs[0]);
+                }  
             })
             .on('error', error => console.error(error));
         dispatcher.setVolumeLogarithmic(queue.volume / 5);

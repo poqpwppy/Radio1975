@@ -60,8 +60,7 @@ module.exports = {
         connection: null,
         songs: [],
         volume: 5,
-        playing: true,
-        loop: false
+        playing: true
     };
     message.client.queue.set(message.guild.id, queueConstruct);
     queueConstruct.songs.push(song);
@@ -85,7 +84,10 @@ module.exports = {
             type: 'opus'
         })
             .on('finish', () => {
-                queue.songs.shift();
+                if (server.loopall === true) {
+                  queue.songs.push(queue.songs[0])
+                  queue.songs.shift();
+                } else queue.songs.shift();
                 play(queue.songs[0]);
             })
             .on('error', error => console.error(error));

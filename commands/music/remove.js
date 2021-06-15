@@ -14,7 +14,7 @@ module.exports = {
         if (!server) return message.channel.send('Không có gì đang phát trong hàng chờ!')
         if (!args[0]) return message.channel.send('Bạn phải cung cấp id bài hát!')
         
-        const song = queue.songs.splice(args[0] - 1, 1)
+        const song = server.songs.splice(args[0] - 1, 1)
         message.react("✅")
 
         let embed = new MessageEmbed()

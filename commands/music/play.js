@@ -68,7 +68,7 @@ module.exports = {
 
     const play = async song => {
         const queue = message.client.queue.get(message.guild.id);
-        if (song) {
+        if (!song) {
             queue.voiceChannel.leave();
             message.client.queue.delete(message.guild.id);
             message.channel.send('Không có gì để phát, tôi thoát đây!')

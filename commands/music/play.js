@@ -85,11 +85,8 @@ module.exports = {
                 if (queue.loop) {
                   let lastSong = queue.songs.shift();
                   queue.songs.push(lastSong);
+                  } else queue.songs.shift();
                   play(queue.songs[0]);
-                  } else {
-                  queue.songs.shift();
-                  play(queue.songs[0]);
-                }  
             })
             .on('error', error => console.error(error));
         dispatcher.setVolumeLogarithmic(queue.volume / 5);

@@ -84,7 +84,7 @@ module.exports = {
             type: 'opus'
         })
             .on('finish', () => {
-                if (server.loop) {
+                if (server.loop === true) {
                   queue.songs.push(queue.songs[0])
                   queue.songs.shift
                 }

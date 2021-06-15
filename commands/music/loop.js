@@ -25,9 +25,9 @@ module.exports = {
     }
     
     //OOOOF
-    serverQueue.loopall = !serverQueue.loopall;
+    serverQueue.loop = !serverQueue.loop;
     
-    embed.setDescription(`Lặp lại đã **${serverQueue.loopall ? "Bật" : "Tắt"}**`)
+    embed.setDescription(`Lặp lại đã **${serverQueue.loop ? "Bật" : "Tắt"}**`)
     embed.setThumbnail(client.user.displayAvatarURL())
     message.channel.send(embed);
   }

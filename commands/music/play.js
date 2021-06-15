@@ -52,7 +52,7 @@ module.exports = {
         .addField('Thời gian', timeString, true)
         return message.channel.send(embed)
     }
-    if (!server || (server && !bot)) {
+    if (!server) {
       
      const queueConstruct = {
         textChannel: message.channel,

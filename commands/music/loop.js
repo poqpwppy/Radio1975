@@ -4,7 +4,6 @@ const { COLOR } = require("../../config.json");
 module.exports = {
   name: "loop",
   aliases: [""],
-  category: "music",
   description: "Loop Your Queue and have fun",
   run: async (client, message, args) => {
     let embed = new MessageEmbed()
@@ -26,9 +25,7 @@ module.exports = {
     
     //OOOOF
     serverQueue.loop = !serverQueue.loop;
-
-    if (serverQueue.loop === true) serverQueue.songs.push(serverQueue.songs.shift());
-    else serverQueue.songs.shift();
+    
     
     embed.setDescription(`Lặp lại đã **${serverQueue.loop ? "Bật" : "Tắt"}**`)
     embed.setThumbnail(client.user.displayAvatarURL())

@@ -1,10 +1,10 @@
 {
     "TOKEN": "",
-    "PREFIX": "R75!",
-    "YOUTUBE_API_KEY": "AIzaSyAM1JpfbD4o_C4HOhCfSHQMRrA3sMvjorE",
+    "PREFIX": "",
+    "YOUTUBE_API_KEY": "",
     "QUEUE_LIMIT": "10",
     "COLOR": "FFCCBC",
-    "ownerID": "479255769188007938",
+    "ownerID": "",
     "DAILY_SALARY": "100",
     "MONTHLY_SALARY": "1000"
 }
